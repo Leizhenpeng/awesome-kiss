@@ -1,0 +1,12 @@
+{
+  "name": "awesome-kiss",
+  "version": "1.0.0",
+  "description": "Kiss-driven collection of software plug-ins",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "RiverRay",
+  "license": "MIT"
+}
