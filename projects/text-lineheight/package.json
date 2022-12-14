@@ -1,21 +1,25 @@
 {
-  "name": "rectangle-creator",
-  "version": "0.0.1",
+  "name": "text-lineheight",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Leizhenpeng <laolei@forkway.cn>",
-  "description": "Quick start a design plugin using Vite and React.",
+  "description": "🩰 智能修复选区内文本层行高",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Leizhenpeng/Leizhenpeng/awesome-kiss.git",
-    "directory": "projects/rectangle-creator"
+    "directory": "projects/text-lineheight"
   },
   "pluginInfo": {
-    "name": "Rectangle Creator",
-    "api": "1.0.0",
+    "name": {
+      "masterGo": "字高",
+      "figma": "text-height",
+      "jsDesign": "字高"
+    },
+    "api": "1.0.1",
     "id": {
-      "masterGo": "80090183159920",
-      "figma": "1183407018802193143",
-      "jsDesign": "_Cm929J-cu10cmqrzbnIS"
+      "masterGo": "77836422690335",
+      "figma": "1184814057510773140",
+      "jsDesign": "jvDQqlP53FiuBPW85SxOH"
     },
     "editorType": {
       "masterGo": [

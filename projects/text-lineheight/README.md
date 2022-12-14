@@ -1,19 +1,4 @@
-<br>
-
-<h1 align="center">Awesome Kiss</h1>
-<p align="center">
-  Kiss-driven collection of design plug-ins
-</p>
-
-<p align="center">
-<a href="https://www.npmjs.com/package/kiss-core"><img src="https://img.shields.io/npm/v/kiss-core?color=CF0A0A&amp;label=kiss" alt="NPM version"></a></p>
-
-
-## 🍔 Choose Project
-
-- [rectangle-creator](./projects/rectangle-creator) - 🥱 应该没有比它更简单的上手项目了吧 
-- [text-lineheight](./projects/text-lineheight) -🧘🏻‍♂️ 便捷修改选区内文本层行高
-
+# rectangle-creator
 
 ## 📦 Install
 
