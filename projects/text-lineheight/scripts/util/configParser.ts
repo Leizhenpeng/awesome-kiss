@@ -4,7 +4,11 @@ import clientNow from '../clientParse'
 class NameHandlerMeta extends AbstractHandler {
   public handle (pkg: any): string {
     if (pkg && pkg.pluginInfo && pkg.pluginInfo.name) {
-      return pkg.pluginInfo.name
+      const namePool = pkg.pluginInfo.name
+      const name = namePool[clientNow]
+      if (name) {
+        return name
+      }
     }
     return super.handle(pkg)
   }
