@@ -84,3 +84,21 @@ class EditorTypeHandlerDefault extends AbstractHandler {
 
 export const editorTypeHandler = new EditorTypeHandlerMeta()
 editorTypeHandler.setNext(new EditorTypeHandlerDefault())
+
+class MenuHandlerMeta extends AbstractHandler {
+  public handle (pkg: any): ManifestMenuItem[] {
+    if (pkg && pkg.pluginInfo && pkg.pluginInfo.menu) {
+      const menuPool = pkg.pluginInfo.menu
+      return menuPool
+    }
+    return super.handle(pkg)
+  }
+}
+class MenuHandlerDefault extends AbstractHandler {
+  public handle (pkg: any): any {
+    return false
+  }
+}
+
+export const menuHandler = new MenuHandlerMeta()
+menuHandler.setNext(new MenuHandlerDefault())

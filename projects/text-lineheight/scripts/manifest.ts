@@ -2,7 +2,7 @@ import fs, { access, mkdir } from 'fs-extra'
 import { log, r } from './utils'
 import clientNow from './clientParse'
 import PkgType from '../package.json'
-import { apiHandler, editorTypeHandler, idHandler, nameHandler } from './util/configParser'
+import { apiHandler, editorTypeHandler, idHandler, menuHandler, nameHandler } from './util/configParser'
 
 export async function genManifest () {
   const pkg = await fs.readJSON(r('package.json')) as typeof PkgType
@@ -14,6 +14,11 @@ export async function genManifest () {
     ui: 'ui/index.html',
     editorType: editorTypeHandler.handle(pkg) as any
   }
+  const menu = menuHandler.handle(pkg)
+  if (menu) {
+    manifest.menu = menu
+  }
+
   return manifest
 }
 

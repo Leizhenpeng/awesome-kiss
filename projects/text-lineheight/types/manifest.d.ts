@@ -1,5 +1,6 @@
 /**
- * @see https://www.figma.com/plugin-docs/manifest/
+ * @see figma  https://www.figma.com/plugin-docs/manifest/
+ * @see mg https://developers.mastergo.com/guide/setup.html
  */
 declare interface Manifest {
   name: string;

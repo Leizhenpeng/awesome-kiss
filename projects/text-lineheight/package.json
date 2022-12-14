@@ -15,7 +15,7 @@
       "figma": "text-height",
       "jsDesign": "字高"
     },
-    "api": "1.0.1",
+    "api": "1.0.0",
     "id": {
       "masterGo": "77836422690335",
       "figma": "1184814057510773140",
@@ -32,7 +32,22 @@
       "jsDesign": [
         "jsDesign"
       ]
-    }
+    },
+    "menu": [
+      {
+        "name": "调整与字号相等",
+        "command": "fontSize"
+      },
+      {
+        "name": "自动行高",
+        "command": "auto"
+      },
+      { "separator": true },
+      {
+        "name": "自定义行高",
+        "command": "custom"
+      }
+    ]
   },
   "publishConfig": {
     "access": "public"
