@@ -29,12 +29,14 @@ io?.on(event.EXIST, () => {
 })
 
 client.on('run', ({ command }: { command: any }) => {
+  // 超时10s 自动关闭
+  const timer = setTimeout(() => {
+    client.mg.closePlugin()
+    timer && clearTimeout(timer)
+  }, 10000)
+
   const selElements = new SelParser().sel
   const aTextParser = new TextParser(selElements)
   aTextParser.changeWay = command
   aTextParser.run()
-  console.log('command', command)
-  setTimeout(() => {
-    io?.emit(event.EXIST)
-  }, 1400)
 })

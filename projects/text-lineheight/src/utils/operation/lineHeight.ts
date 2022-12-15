@@ -1,9 +1,10 @@
+import { event } from '@/event'
 import { client, env } from 'kiss-core'
 import { masterGoClinet, figmaClient } from 'kiss-core/types'
 import { Ecommand } from '../../../types/code.d'
 import { tipResult } from '../notification'
 import { allowFg, allowMg } from './selParse'
-
+import { io_hook as io } from 'kiss-msg'
 type FrameNodeMg = masterGoClinet.FrameNode
 type TextNodeMg = masterGoClinet.TextNode
 
@@ -59,7 +60,7 @@ export class LineHeight {
   async loadAllFont () {
     if (env.inMg) return Promise.resolve()
     await Promise.all(
-      this.textNodeFg.getRangeAllFontNames(0, this.textNodeFg.characters.length)
+      this.textNode.getRangeAllFontNames(0, this.textNodeFg.characters.length)
         .map(figma.loadFontAsync)
     )
   }
@@ -67,7 +68,7 @@ export class LineHeight {
   changeLineHeight (rario_ = 1) {
     const ratio = rario_ || 1
     this.loadAllFont().then(() => {
-      this.textNodeFg.setRangeLineHeight(0, this.textNode.characters.length, {
+      this.textNode.setRangeLineHeight(0, this.textNodeFg.characters.length, {
         unit: 'PIXELS',
         value: this.maxWidth * ratio
       } as any)
@@ -77,7 +78,8 @@ export class LineHeight {
 
   async changeAutoLineHeight () {
     await this.loadAllFont()
-    this.textNodeFg.setRangeLineHeight(0, this.textNode.characters.length, {
+    console.log('this.textNodeFg.characters.length', this.textNodeFg.characters.length)
+    this.textNode.setRangeLineHeight(0, this.textNodeFg.characters.length, {
       unit: 'AUTO'
     } as any)
   }
@@ -137,58 +139,60 @@ export class TextParser {
     return this.texts.length === 0
   }
 
+  exist () {
+    client.mg.closePlugin()
+  }
+
   tipSuccess () {
     tipResult(this.successNum, this.changeWay, this.ratio)
   }
 
-  changeFontSizeLineHeight () {
-    if (!(this.changeWay === Ecommand.fontSize)) { return }
-
-    this.texts.forEach((component: any) => {
+  factoryChangeLineHeight (fn: any) {
+    if (this.ifNoText()) { return }
+    console.log('12312', this.ifNoText())
+    Promise.all(this.texts.map(async (component: any) => {
       try {
         const nowCom = new LineHeight(component)
-        nowCom.changeLineHeight()
+        fn(nowCom)
         this.successNum += 1
       } catch (e) {
         console.error(e)
       }
+    })).then(() => {
+      this.tipSuccess()
+    }).finally(() => {
+      setTimeout(() => {
+        this.exist()
+      }
+      , 1000)
     })
-    this.tipSuccess()
+  }
+
+  changeFontSizeLineHeight () {
+    if (!(this.changeWay === Ecommand.fontSize)) { return }
+    this.factoryChangeLineHeight((nowCom: any) => {
+      nowCom.changeLineHeight()
+    })
   }
 
   changeCustomLineHeight () {
     if (!(this.changeWay === Ecommand.custom)) { return }
-
-    this.texts.forEach((component: any) => {
-      try {
-        const nowCom = new LineHeight(component)
-        nowCom.changeLineHeight(this.ratio)
-        this.successNum += 1
-      } catch (e) {
-        console.error(e)
-      }
+    this.factoryChangeLineHeight((nowCom: any) => {
+      nowCom.changeLineHeight(this.ratio)
     })
-    this.tipSuccess()
   }
 
   changeAutoLineHeight () {
     if (!(this.changeWay === Ecommand.auto)) { return }
-
-    this.texts.forEach((component: any) => {
-      try {
-        const nowCom = new LineHeight(component)
-        nowCom.changeAutoLineHeight()
-        this.successNum += 1
-      } catch (e) {
-        console.error(e)
-      }
+    this.factoryChangeLineHeight((nowCom: any) => {
+      nowCom.changeAutoLineHeight()
     })
-    this.tipSuccess()
   }
 
   detach () {
     if (this.ifNoText()) {
       this.tipSuccess()
+      this.exist()
       return
     }
     this.changeCustomLineHeight()
