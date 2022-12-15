@@ -42,7 +42,9 @@
         "name": "自动行高",
         "command": "auto"
       },
-      { "separator": true },
+      {
+        "separator": true
+      },
       {
         "name": "自定义行高",
         "command": "custom"
@@ -85,7 +87,7 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "kiss-core": "^0.1.0",
+    "kiss-core": "link:/Users/river/dev/vuePool/design-toolkit-cn/packages/kiss-core",
     "kiss-msg": "^0.1.0",
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",

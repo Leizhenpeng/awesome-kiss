@@ -30,8 +30,8 @@ importers:
       figmaio: ^0.2.10
       fs-extra: ^10.0.0
       husky: ^7.0.2
-      kiss-core: ^0.1.0
-      kiss-msg: ^0.1.0
+      kiss-core: ^0.2.0
+      kiss-msg: ^0.2.0
       kolorist: ^1.5.0
       lint-staged: ^11.1.2
       lodash-es: ^4.17.21
@@ -45,8 +45,8 @@ importers:
       vite: ^3.2.4
       vite-plugin-singlefile: ^0.13.1
     dependencies:
-      kiss-core: 0.1.2
-      kiss-msg: 0.1.2
+      kiss-core: 0.2.0
+      kiss-msg: 0.2.0
       lodash-es: 4.17.21
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -109,7 +109,7 @@ importers:
       figmaio: ^0.2.10
       fs-extra: ^10.0.0
       husky: ^7.0.2
-      kiss-core: ^0.1.0
+      kiss-core: link:/Users/river/dev/vuePool/design-toolkit-cn/packages/kiss-core
       kiss-msg: ^0.1.0
       kolorist: ^1.5.0
       lint-staged: ^11.1.2
@@ -2440,11 +2440,23 @@ packages:
     requiresBuild: true
     dev: false
 
+  /kiss-core/0.2.0:
+    resolution: {integrity: sha512-CrJHjpGg/Dlhef2CYKcdMUQ+PlzCD/CjQZHqfYckHBGsXfMc2VssNnVwK161KhtPPETzJDb2mYXiOGAR4/hYDQ==}
+    requiresBuild: true
+    dev: false
+
   /kiss-msg/0.1.2:
     resolution: {integrity: sha512-0e9uuQdJECsp1swoKxwprm3fK3hmHz1pO5Kidxp6NnDkke9Ca1a3qHq7+fgo2v5ZPfehl029c4xu5E9pe+q/jw==}
     dependencies:
       eventemitter3: 5.0.0
       kiss-core: 0.1.2
+    dev: false
+
+  /kiss-msg/0.2.0:
+    resolution: {integrity: sha512-0lGHcA8k84gqnRARNkGIvqCmzmuCFffteFfdqz4b2vTYPmmmQoJaxREAjxxaD4FJXzTnp4xqqM5lBEyQaeHeRA==}
+    dependencies:
+      eventemitter3: 5.0.0
+      kiss-core: 0.2.0
     dev: false
 
   /kolorist/1.6.0:
