@@ -39,15 +39,8 @@
         "command": "fontSize"
       },
       {
-        "name": "自动行高",
+        "name": "调整为自动行高",
         "command": "auto"
-      },
-      {
-        "separator": true
-      },
-      {
-        "name": "自定义行高",
-        "command": "custom"
       }
     ]
   },

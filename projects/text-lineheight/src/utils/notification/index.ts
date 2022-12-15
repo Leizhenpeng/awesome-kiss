@@ -27,7 +27,7 @@ io?.on(e.NOTIFY, (data) => {
 
 io?.on(e.WARN, (data) => {
   data = dataToString(data)
-  if (typeof data === 'string') {
+  if (env.inMg) {
     client.mg.notify(data, {
       position: 'bottom',
       type: 'warning'
