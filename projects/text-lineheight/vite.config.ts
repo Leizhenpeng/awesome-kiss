@@ -9,7 +9,17 @@ const ifCompress = (fn: () => any, defaultVal: any = {}) => {
   if (isDev) { return fn() }
   return defaultVal
 }
+export const commonConfig = () => {
+  return {
+    resolve: {
+      alias: {
+        '@/': `${path.resolve(__dirname, 'src')}/`
+      }
+    }
+  }
+}
 const config = defineConfig({
+  ...commonConfig(),
   plugins: [
     reactPlugin(),
     viteSingleFile()
