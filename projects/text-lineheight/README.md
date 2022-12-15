@@ -1,5 +1,10 @@
 # rectangle-creator
 
+## 上线地址
+- [MasterGo](https://mastergo.com/community/plugin/77836422690335) 
+<!-- - [即时设计](https://mastergo.com/community/plugin/77836422690335) 
+- [Figma ](https://mastergo.com/community/plugin/77836422690335)  -->
+
 ## 📦 Install
 
 ```bash
