@@ -12,12 +12,14 @@
 ## 🍔 Choose Project
 
 - [rectangle-creator](./projects/rectangle-creator) - 🥱 应该没有比它更简单的上手项目了吧 
-- [text-lineheight](./projects/text-lineheight) -🧘🏻‍♂️ 便捷修改选区内文本层行高
+- [text-lineheight](./projects/text-lineheight) -🧘🏻‍♂️ 修改选区内文本层行高
 
-
-## 📦 Install
+## 📦 How to Use
 
 ```bash
+npx degit Leizhenpeng/awesome-kiss/projects/PROJECT__NAME kiss-project
+cd kiss-project
+
 pnpm install
 ```
 
@@ -47,7 +49,7 @@ pnpm install
 
 `pnpm run build-all`
 
-或单独打包
+或者单独打包
 
 `pnpm run build-figma` 
 
@@ -58,10 +60,9 @@ pnpm install
 `pnpm run build-js`
 
 ## 🚀 Features
-- **KISS**: Power By [Kiss](https://github.com/Leizhenpeng/design-tooltik-cn/tree/main/packages/kiss-core).
-- **HMR**: Support HMR(Hot Module Replacement) of Plugin
+- **Kiss**: Power By [Kiss](https://github.com/Leizhenpeng/design-tooltik-cn/tree/main/packages/kiss-core).
+- **Hmr**: Support HMR(Hot Module Replacement) of Plugin
 - **Vite**: Bundle user interface and js code using ViteJs
-- **React**: Use ReactJs to write the user interface
 
 ## 📄 License
 
