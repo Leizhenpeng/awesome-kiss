@@ -18,7 +18,7 @@ if (!env.inMg) {
 io?.send('hook:hello', 'hello from hook')
 
 io?.on('create-rectangles', (count) => {
-  const nodes: SceneNode[] = []
+  const nodes = []
   for (let i = 0; i < count; i++) {
     const rect = client.createRectangle() as any
     rect.x = i * 150
