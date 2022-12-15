@@ -1,13 +1,25 @@
+import { client, env } from 'kiss-core'
 import { masterGoClinet, figmaClient } from 'kiss-core/types'
 import { Ecommand } from '../../../types/code.d'
 import { tipResult } from '../notification'
+import { allowFg, allowMg } from './selParse'
 
 type FrameNodeMg = masterGoClinet.FrameNode
 type TextNodeMg = masterGoClinet.TextNode
 
+type TextNodeFigma = figmaClient.TextNode
+
 export class LineHeight {
-  private textNode: TextNodeMg
+  private textNode: any
   maxWidth: number
+
+  get textNodeFg () {
+    return this.textNode as TextNodeFigma
+  }
+
+  get textNodeMg () {
+    return this.textNode as TextNodeMg
+  }
 
   constructor (textNode: TextNodeMg) {
     this.textNode = textNode
@@ -15,44 +27,59 @@ export class LineHeight {
   }
 
   parserMaxCharSize () {
-    const textStyles = this.textNode.textStyles
+    this.parserMaxCharSizeFigma()
+    this.parserMaxCharSizeMg()
+  }
+
+  @allowMg
+  parserMaxCharSizeMg () {
+    const textStyles = this.textNodeMg.textStyles
     const maxCharSize = textStyles.reduce((max: any, now: any) => {
       if (now.textStyle.fontSize > max) { return now.textStyle.fontSize }
-
       return max
     }
     , 1)
     this.maxWidth = maxCharSize
   }
 
-  changeSize () {
-    this.textNode.width = this.maxWidth
+  @allowFg
+  parserMaxCharSizeFigma () {
+    const totalCharSize = this.textNodeFg.characters.length
+    // step 1;get rangefontsize ;get max
+    let maxCharSize = 0
+    for (let i = 0; i < totalCharSize; i++) {
+      const nowCharSize = this.textNodeFg.getRangeFontSize(i, i + 1) as number
+      if (nowCharSize > maxCharSize) {
+        maxCharSize = nowCharSize
+      }
+    }
+    this.maxWidth = maxCharSize
   }
 
-  changeAlign () {
-    this.textNode.textAlignHorizontal = 'CENTER'
-    this.textNode.textAlignVertical = 'TOP'
-    this.textNode.textAutoResize = 'HEIGHT'
+  async loadAllFont () {
+    if (env.inMg) return Promise.resolve()
+    await Promise.all(
+      this.textNodeFg.getRangeAllFontNames(0, this.textNodeFg.characters.length)
+        .map(figma.loadFontAsync)
+    )
   }
 
   changeLineHeight (rario_ = 1) {
     const ratio = rario_ || 1
-    this.textNode.setRangeLineHeight(0, this.textNode.characters.length, {
-      unit: 'PIXELS',
-      value: this.maxWidth * ratio
-    } as any)
+    this.loadAllFont().then(() => {
+      this.textNodeFg.setRangeLineHeight(0, this.textNode.characters.length, {
+        unit: 'PIXELS',
+        value: this.maxWidth * ratio
+      } as any)
+    })
+    console.log('this.maxWidth', this.maxWidth)
   }
 
-  changeAutoLineHeight () {
-    this.textNode.setRangeLineHeight(0, this.textNode.characters.length, {
+  async changeAutoLineHeight () {
+    await this.loadAllFont()
+    this.textNodeFg.setRangeLineHeight(0, this.textNode.characters.length, {
       unit: 'AUTO'
     } as any)
-  }
-
-  run () {
-    this.changeLineHeight()
-    // this.changeAlign()
-    // this.changeSize()
   }
 }
 

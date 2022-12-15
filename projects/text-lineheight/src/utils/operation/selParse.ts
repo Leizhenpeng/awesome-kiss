@@ -2,7 +2,7 @@
 import { client, env } from 'kiss-core'
 import { masterGoClinet, figmaClient } from 'kiss-core/types'
 
-function allowMg (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function allowMg (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value
   descriptor.value = function (...args: any[]) {
     if (env.inMg) {
@@ -11,7 +11,7 @@ function allowMg (target: any, propertyKey: string, descriptor: PropertyDescript
   }
 }
 
-function allowFg (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function allowFg (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value
   descriptor.value = function (...args: any[]) {
     if (!env.inMg) {
