@@ -10,6 +10,7 @@ const config = defineConfig(({ mode }) => {
   }
   return {
     build: {
+      target: 'es2015',
       outDir: `plugin/${clientNow}/code`,
       minify: ifCompress(() => 'terser', false),
       terserOptions: ifCompress(() => ({
