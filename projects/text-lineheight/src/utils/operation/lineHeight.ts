@@ -1,10 +1,8 @@
-import { event } from '@/event'
 import { client, env } from 'kiss-core'
-import { masterGoClinet, figmaClient } from 'kiss-core/types'
+import { figmaClient, masterGoClinet } from 'kiss-core/types'
 import { Ecommand } from '../../../types/code.d'
 import { tipResult } from '../notification'
 import { allowFg, allowMg } from './selParse'
-import { io_hook as io } from 'kiss-msg'
 type FrameNodeMg = masterGoClinet.FrameNode
 type TextNodeMg = masterGoClinet.TextNode
 
@@ -46,7 +44,6 @@ export class LineHeight {
   @allowFg
   parserMaxCharSizeFigma () {
     const totalCharSize = this.textNodeFg.characters.length
-    // step 1;get rangefontsize ;get max
     let maxCharSize = 0
     for (let i = 0; i < totalCharSize; i++) {
       const nowCharSize = this.textNodeFg.getRangeFontSize(i, i + 1) as number
@@ -192,7 +189,10 @@ export class TextParser {
   detach () {
     if (this.ifNoText()) {
       this.tipSuccess()
-      this.exist()
+      setTimeout(() => {
+        this.exist()
+      }
+      , 1000)
       return
     }
     this.changeCustomLineHeight()
