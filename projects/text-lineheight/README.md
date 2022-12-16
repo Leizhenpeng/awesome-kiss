@@ -3,7 +3,7 @@
 ## 上线地址
 - [MasterGo](https://mastergo.com/community/plugin/77836422690335) 
 - [Figma](https://www.figma.com/community/plugin/1184814057510773140) 
-<!-- - [即时设计](https://mastergo.com/community/plugin/77836422690335)  -->
+- [即时设计](https://js.design/pluginDetail?id=639c49b2c4c76a25a8a4279a) 
 
 ## 📦 Install
 
