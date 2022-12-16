@@ -5,7 +5,7 @@
 /yarn.lock
 /package-lock.json
 /.pnpm-debug.log
-*.code-workspace
+
 # production
 /plugin
 

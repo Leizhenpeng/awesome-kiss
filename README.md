@@ -11,8 +11,9 @@
 
 ## 🍔 Choose Project
 
-- [rectangle-creator](./projects/rectangle-creator) - 🥱 应该没有比它更简单的上手项目了吧 
-- [text-lineheight](./projects/text-lineheight) -🧘🏻‍♂️ 修改选区内文本层行高
+- [画矩形 (Rectangle Creator)](./projects/rectangle-creator) - 🥱 应该没有比它更简单的上手项目了吧 
+- [字高 (Text Lineheight)](./projects/text-lineheight) - 🧘🏻‍♂️ 修改选区内文本层行高
+- [图标可大可小 (Icon Resize)](./projects/icon-resize) - 🤾‍♂️ 规范图标尺寸
 
 ## 📦 How to Use
 
