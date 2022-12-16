@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite'
 import reactPlugin from '@vitejs/plugin-react'
 import { viteSingleFile } from 'vite-plugin-singlefile'
+import { obfuscator } from 'rollup-obfuscator'
 import clientNow from './scripts/clientParse'
 import path from 'path'
 
 const isDev = process.env.NODE_ENV === 'development'
 const ifCompress = (fn: () => any, defaultVal: any = {}) => {
-  if (isDev) { return fn() }
+  if (!isDev) { return fn() }
   return defaultVal
 }
 export const commonConfig = () => {
@@ -22,7 +23,10 @@ const config = defineConfig({
   ...commonConfig(),
   plugins: [
     reactPlugin(),
-    viteSingleFile()
+    viteSingleFile(),
+    ifCompress(() => obfuscator({
+      optionsPreset: 'low-obfuscation'
+    }))
   ],
   build: {
     outDir: `plugin/${clientNow}/ui`,
