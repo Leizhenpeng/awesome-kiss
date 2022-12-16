@@ -80,8 +80,8 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "kiss-core": "0.2.0",
-    "kiss-msg": "0.2.0",
+    "kiss-core": "0.2.2",
+    "kiss-msg": "0.2.2",
     "lodash-es": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
