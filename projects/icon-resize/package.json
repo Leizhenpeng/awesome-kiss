@@ -73,7 +73,7 @@
     "@vueuse/core": "^9.2.0",
     "dist": "link:/Users/river/dev/vuePool/design-toolkit-cn/packages/kiss-msg/dist",
     "eslint-module-utils": "^2.7.4",
-    "kiss-core": "link:/Users/river/dev/vuePool/design-toolkit-cn/packages/kiss-core",
+    "kiss-core": "0.2.2",
     "kiss-msg": "0.2.3",
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.33.3",
