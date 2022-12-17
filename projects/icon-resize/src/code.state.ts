@@ -12,8 +12,8 @@ export const cache = ref<IAppConfig>()
 
 export async function firstParserConfig () {
   if (!cache.value) {
-    getConfig(cacheName, initConfig).then((config) => {
-      cache.value = config
-    })
+    const cache_ = await getConfig(cacheName, initConfig)
+    cache.value = cache_
   }
+  return cache.value
 }

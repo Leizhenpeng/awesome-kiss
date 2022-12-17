@@ -48,15 +48,17 @@ const config = defineConfig({
       optionsPreset: 'low-obfuscation'
     }))
   ],
+  esbuild: {
+    drop: ['debugger'],
+    pure: ifCompress(() => {
+      return ['console.log', 'console.error', 'console.warn', 'console.debug', 'console.trace']
+    }, [])
+  },
   build: {
     outDir: `plugin/${clientNow}/ui`,
-    minify: ifCompress(() => 'terser', false),
-    terserOptions: ifCompress(() => ({
-      compress: {
-        drop_console: true
-      }
-    }), null),
+    minify: ifCompress(() => 'esbuild', false),
     sourcemap: isDev,
+    watch: isDev ? {} : null,
     cssCodeSplit: false,
     assetsInlineLimit: 100000000000000000,
     rollupOptions: {

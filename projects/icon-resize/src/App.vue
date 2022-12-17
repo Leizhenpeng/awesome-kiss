@@ -2,20 +2,13 @@
 import { darkTheme, GlobalThemeOverrides } from 'naive-ui';
 import { io_ui as io } from 'kiss-msg'
 import { event as e } from './event'
-const iconSize = ref(18)
-const boxSize = ref(22)
-const triggerOne = ref('This works!')
+import { configApp } from './app.state';
+import { IAppConfig } from 'types/code';
 const resizeIcon = () => {
-    parent.postMessage({
-        type: 'resize', triggerOne: triggerOne.value, data: JSON.stringify({
-            boxSize: boxSize.value,
-            iconSize: iconSize.value,
-        })
-    }
-        , '*')
+    io?.send(e.UI_CHANGE_SIZE, configApp)
 }
 const cancel = () => {
-    parent.postMessage({ type: 'cancel' }, '*')
+    io?.send(e.UI_CLOSE, '')
 }
 const isDark = ref(false)
 const ifUseDarkTheme = computed(() => {
@@ -48,6 +41,11 @@ const themeOverrides = computed(() => {
     return custom
 })
 
+
+io?.on(e.CODE_INIT_CONFIG, (data:IAppConfig) => {
+    configApp.boxSize = data.boxSize
+    configApp.iconSize = data.iconSize
+})
 // window.addEventListener('message', (event: any) => {
 //     const { data } = event
 //     if (data.name === 'saveDefaults') {
@@ -65,13 +63,12 @@ const themeOverrides = computed(() => {
 //     }
 // })
 onMounted(() => {
-  io?.send(e.UI_INIT,'')
+  io?.send(e.UI_INIT, '')
 })
 const formatValue = (lengthValue: any) => {
     if (lengthValue === null) return ''
     return `${lengthValue} px`
 }
-
 const parseValue = (lengthValue: any) => {
     if (lengthValue === null) return null
     //regex filter not number
@@ -103,20 +100,20 @@ onKeyStroke('Escape', (e) => {
                             <template #label>
                                 <div flex="~ row center " justify-start>
                                     <img src="./assets/icon.png" alt="icon" w-20px h-20px>
-                                    <h2 font-bold>图标大小</h2>
+                                    <h2 font-bold ml-1>图标大小</h2>
                                 </div>
                             </template>
-                            <n-input-number v-model:value="iconSize" clearable :validator="validatorValue" :format="formatValue"
+                            <n-input-number v-model:value="configApp.iconSize" clearable :validator="validatorValue" :format="formatValue"
                                 :parse="parseValue" />
                         </n-form-item>
                         <n-form-item>
                             <template #label>
                                 <div flex="~ row center " justify-start>
                                     <img src="./assets/box.png" alt="icon" w-20px h-20px>
-                                    <h2 font-bold>盒子大小</h2>
+                                    <h2 font-bold ml-1>盒子大小</h2>
                                 </div>
                             </template>
-                            <n-input-number v-model:value="boxSize" clearable :validator="validatorValue" :format="formatValue"
+                            <n-input-number v-model:value="configApp.boxSize" clearable :validator="validatorValue" :format="formatValue"
                                 :parse="parseValue" />
                         </n-form-item>
                     </n-form>
