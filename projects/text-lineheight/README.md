@@ -1,8 +1,10 @@
 # text-lineheight
-
+![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat)
+![Vite Badge](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff&style=flat)
+![rollup.js Badge](https://img.shields.io/badge/rollup.js-EC4A3F?logo=rollupdotjs&logoColor=fff&style=flat)
 ## 上线地址
+- [![Figma Badge](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=fff&style=flat-square)](https://www.figma.com/community/plugin/1184814057510773140) 
 - [MasterGo](https://mastergo.com/community/plugin/77836422690335) 
-- [Figma](https://www.figma.com/community/plugin/1184814057510773140) 
 - [即时设计](https://js.design/pluginDetail?id=639c49b2c4c76a25a8a4279a) 
 
 ## 📦 Install
