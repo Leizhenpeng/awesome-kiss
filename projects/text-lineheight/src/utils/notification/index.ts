@@ -1,6 +1,6 @@
 import { e } from '@/event'
-import { io_hook as io } from 'kiss-msg'
 import { client, env } from 'kiss-core'
+import { io_hook as io } from 'kiss-msg'
 import { Ecommand } from '../../../types/code.d'
 
 function dataToString (data: any) {

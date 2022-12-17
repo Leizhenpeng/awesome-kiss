@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite'
-import reactPlugin from '@vitejs/plugin-react'
+import Vue from '@vitejs/plugin-vue'
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import Unocss from 'unocss/vite'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 import { obfuscator } from 'rollup-obfuscator'
 import clientNow from './scripts/clientParse'
@@ -22,7 +26,23 @@ export const commonConfig = () => {
 const config = defineConfig({
   ...commonConfig(),
   plugins: [
-    reactPlugin(),
+    Vue(
+      {
+        reactivityTransform: true
+      }
+    ),
+    Unocss(),
+    AutoImport({
+      imports: [
+        'vue',
+        '@vueuse/core'
+      ],
+      dts: true
+    }),
+    Components({
+      resolvers: [NaiveUiResolver()],
+      dts: true
+    }),
     viteSingleFile(),
     ifCompress(() => obfuscator({
       optionsPreset: 'low-obfuscation'

@@ -3,26 +3,26 @@ import { io_hook as io } from 'kiss-msg'
 import './utils/notification'
 
 import { event } from './event'
-import { TextParser } from './utils/operation/lineHeight'
 import { SelParser } from './utils/operation/selParse'
-
+import { firstParserConfig } from './code.state'
+const a = ref(231)
+console.log('a', a.value)
+console.log('123213', 123213)
 client.mg.showUI(__html__, {
-  visible: false
+  width: 300,
+  height: 410,
+  visible: true
 })
 
-io?.on(event.EXIST, () => {
-  client.mg.closePlugin()
+// io?.on(event.UI_CLOSE, () => {
+//   client.mg.closePlugin()
+// })
+
+io?.on(event.UI_INIT, () => {
+  // firstParserConfig().then((config) => {
+  //   console.log('config', config)
+  //   // io?.send(event.CODE_INIT_CONFIG, config)
+  // })
 })
 
-client.on('run', ({ command }: { command: any }) => {
-  // 超时10s 自动关闭
-  const timer = setTimeout(() => {
-    client.mg.closePlugin()
-    timer && clearTimeout(timer)
-  }, 10000)
-
-  const selElements = new SelParser().sel
-  const aTextParser = new TextParser(selElements)
-  aTextParser.changeWay = command
-  aTextParser.run()
-})
+// io?.on(event.UI_CHANGE_SIZE, (data) => { })
