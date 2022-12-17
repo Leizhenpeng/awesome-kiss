@@ -6,8 +6,8 @@ body,
   padding: 0;
 }
 
-html.dark {
-  background: #121212;
+html{
+  background: white;
 }
 
 input,
@@ -23,7 +23,7 @@ a {
   --c-primary: #3664ec;
   --c-primary-deep: #1a4eea;
   --c-ok: #3664ec;
-  --c-mis: ##d44e30;
+  --c-mis: #d44e30;
   --c-warn: #fba238;
 }
 .dark {

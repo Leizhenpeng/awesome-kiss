@@ -1,6 +1,5 @@
 
 import { client, env } from 'kiss-core'
-import { masterGoClinet, figmaClient } from 'kiss-core/types'
 
 export function allowMg (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value

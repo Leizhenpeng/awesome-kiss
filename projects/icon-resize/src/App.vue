@@ -4,8 +4,9 @@ import { io_ui as io } from 'kiss-msg'
 import { event as e } from './event'
 import { configApp } from './app.state';
 import { IAppConfig } from 'types/code';
+
 const resizeIcon = () => {
-    io?.send(e.UI_CHANGE_SIZE, configApp)
+  io?.send(e.UI_CHANGE_SIZE, toRaw(configApp))
 }
 const cancel = () => {
     io?.send(e.UI_CLOSE, '')
@@ -46,22 +47,7 @@ io?.on(e.CODE_INIT_CONFIG, (data:IAppConfig) => {
     configApp.boxSize = data.boxSize
     configApp.iconSize = data.iconSize
 })
-// window.addEventListener('message', (event: any) => {
-//     const { data } = event
-//     if (data.name === 'saveDefaults') {
-//         const { boxSize: boxSizeCache, iconSize: iconSizeCache } = data
-//         if (boxSizeCache) {
-//             boxSize.value = boxSizeCache
-//         }
-//         if (iconSizeCache) {
-//             iconSize.value = iconSizeCache
-//         }
-//     }
-//     if (data.name === 'setTheme') {
-//         const { ifDark } = data
-//         isDark.value = ifDark
-//     }
-// })
+
 onMounted(() => {
   io?.send(e.UI_INIT, '')
 })
@@ -92,9 +78,9 @@ onKeyStroke('Escape', (e) => {
 <template>
     <div>
         <n-config-provider :theme-overrides="themeOverrides" :theme="ifUseDarkTheme">
-            <div flex="~ center col">
+            <div flex="~ center col" pt-2>
                 <img src="./assets/logo.png" alt="logo" cursor-pointer w-30 h-30 mt-2 @click="goHome">
-                <div mt-2 mb--2>
+                <div my-4 mb--2>
                     <n-form>
                         <n-form-item label="ICON SIZE">
                             <template #label>
@@ -118,7 +104,7 @@ onKeyStroke('Escape', (e) => {
                         </n-form-item>
                     </n-form>
                 </div>
-                <div flex="~ row gap-2 center">
+                <div flex="~ row gap-2 center" mt-2>
                     <button @click="resizeIcon" btn min-w-160px @keydown.enter="resizeIcon">修改大小</button>
                     <button btn bg-warn @click="cancel">取消</button>
                 </div>
