@@ -1,43 +1,39 @@
-
 import { client, env } from 'kiss-core'
-import { masterGoClinet, figmaClient } from 'kiss-core/types'
 
-export function allowMg (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function allowMg(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value
   descriptor.value = function (...args: any[]) {
-    if (env.inMg) {
+    if (env.inMg)
       originalMethod.apply(this, args)
-    }
   }
 }
 
-export function allowFg (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function allowFg(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value
   descriptor.value = function (...args: any[]) {
-    if (!env.inMg) {
+    if (!env.inMg)
       originalMethod.apply(this, args)
-    }
   }
 }
 
 export class SelParser {
   sel: any
 
-  constructor () {
+  constructor() {
     this.commonSel()
   }
 
   @allowMg
-  getMgSel () {
+  getMgSel() {
     this.sel = client.mg.document.currentPage.selection
   }
 
   @allowFg
-  getFgSel () {
+  getFgSel() {
     this.sel = client.figma.currentPage.selection
   }
 
-  commonSel () {
+  commonSel() {
     this.getFgSel()
     this.getMgSel()
   }

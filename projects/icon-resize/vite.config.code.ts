@@ -37,10 +37,12 @@ const config = defineConfig(({ mode }) => {
     ],
     esbuild: {
       drop: ['debugger'],
-      pure: ['console.log', 'console.error', 'console.warn', 'console.debug', 'console.trace']
+      pure: ifCompress(() => {
+        return ['console.log', 'console.error', 'console.warn', 'console.debug', 'console.trace']
+      }, [])
     },
     build: {
-      // target: 'es2015',
+      target: 'es2015',
       outDir: `plugin/${clientNow}/code`,
       minify: ifCompress(() => 'esbuild', false),
       watch: isDev ? {} : null,
