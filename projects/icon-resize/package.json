@@ -12,7 +12,7 @@
   "pluginInfo": {
     "name": {
       "masterGo": "图标可大可小",
-      "figma": "icon-box-reisze",
+      "figma": "icon-box-resize",
       "jsDesign": "图标可大可小"
     },
     "api": "1.0.0",
